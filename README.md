@@ -10,6 +10,10 @@ Cybersecurity Incident Reporting & Tracking System. Incident intake, classificat
 
 The checked-in-ignored local `.env` enables `DEMO_MODE=true`: the dashboard signs in to the API automatically and reads/writes demo incidents through authenticated REST routes. Demo data is held in API memory and resets when the API restarts. For MySQL persistence, install MySQL 8+, run `mysql -u root -p < database/schema.sql`, configure `.env` from `.env.example` with `DEMO_MODE=false`, a strong `JWT_SECRET`, and database credentials. The production login route uses bcryptjs password hashes; provision user accounts through a controlled admin workflow.
 
+## Deploy to Render
+
+The `render.yaml` blueprint builds the React frontend and serves it with the Express API as one web service. In Render, create a new Blueprint from this repository and deploy it with the generated `JWT_SECRET` and `DEMO_MODE=true` defaults. The free instance may sleep when idle, and demo incidents are in memory, so changes to demo data reset when the service restarts. AI agent features require setting `OPENAI_API_KEY` in the Render service environment.
+
 ## Full Stack-II mapping
 
 - React dashboard and incident intake, with Redux Toolkit for UI state.
